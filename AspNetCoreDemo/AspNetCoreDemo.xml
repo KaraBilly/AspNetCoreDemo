@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNetCoreDemo</name>
+    </assembly>
+    <members>
+        <member name="M:AspNetCoreDemo.Controllers.ValuesController.Get(AspNetCoreDemo.Dtos.Values.Requests.GetValuesRequest)">
+            <summary>
+            get
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="P:AspNetCoreDemo.Startup.ServiceXmlPath">
+            <summary>
+                The path for service metadata.
+            </summary>
+        </member>
+    </members>
+</doc>
