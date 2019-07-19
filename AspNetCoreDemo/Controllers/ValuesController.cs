@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AspNetCoreDemo.Dtos;
 using AspNetCoreDemo.Dtos.Values.Requests;
 using AspNetCoreDemo.Dtos.Values.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +19,13 @@ namespace AspNetCoreDemo.Controllers
         /// <summary>
         /// get
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
         [ProducesResponseType(typeof(NotFoundResult), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(GetValuesResponse), (int)HttpStatusCode.OK)]
-        [HttpGet("{value_id}")]
-        public async Task<ObjectResult> Get(GetValuesRequest request)
+        [HttpGet("{id}")]
+        public async Task<ObjectResult> Get([FromRoute(Name = "id")]int id,[FromQuery]GetValuesRequest value)
         {
             
             return new OkObjectResult(new GetValuesResponse());

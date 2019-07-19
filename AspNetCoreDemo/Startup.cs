@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AspectCore.Extensions.DependencyInjection;
 using AspNetCoreDemo.Configs;
@@ -29,6 +30,7 @@ namespace AspNetCoreDemo
         private const string SwaggerJsonPath = "/swagger/v1/swagger.json";
         private const string MetadataTitle = "AspNetCoreDemo";
         private const string Version = "v1";
+        private const string DefaultContentType = "application/json";
         #endregion
 
         #region Properties
@@ -115,38 +117,36 @@ namespace AspNetCoreDemo
             services.AddOptions();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-                app.UseExceptionHandler(errorApp =>
+            app.UseExceptionHandler(
+                options =>
                 {
-                    errorApp.Run(async context =>
-                    {
-                        context.Response.StatusCode = 500;
-                        context.Response.ContentType = "text/plain";
-                        var errorFeature = context.Features.Get<IExceptionHandlerFeature>();
-                        if (errorFeature != null)
+                    options.Run(
+                        async context =>
                         {
-                            var logger = loggerFactory.CreateLogger("Global exception logger");
-                            logger.LogError(500, errorFeature.Error, errorFeature.Error.Message);
-                        }
-
-                        await context.Response.WriteAsync("There was an error");
-                    });
-                });
-            }
-
-            app.UseHttpsRedirection();
+                            var r = context.Response;
+                            r.StatusCode = (int)HttpStatusCode.InternalServerError;
+                            r.ContentType = DefaultContentType;
+                            var ex = context.Features.Get<IExceptionHandlerFeature>();
+                            if (ex?.Error != null)
+                            {
+                                await context.Response.WriteAsync(JsonConvert.SerializeObject(
+                                    new
+                                    {
+                                        ErrorMessage = ex.Error.Message,
+                                        ex.Error.StackTrace
+                                    })).ConfigureAwait(false);
+                            }
+                        });
+                }
+            );
+            app.UseMvcWithDefaultRoute();
+            app.UseStaticFiles();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint(SwaggerJsonPath, "DemoAPI V1");
+                c.SwaggerEndpoint(SwaggerJsonPath, MetadataTitle);
             });
         }
     }

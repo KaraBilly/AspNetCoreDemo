@@ -4,17 +4,65 @@
         <name>AspNetCoreDemo</name>
     </assembly>
     <members>
-        <member name="M:AspNetCoreDemo.Controllers.ValuesController.Get(AspNetCoreDemo.Dtos.Values.Requests.GetValuesRequest)">
+        <member name="M:AspNetCoreDemo.Controllers.ValuesController.Get(System.Int32,System.Int32)">
             <summary>
             get
             </summary>
-            <param name="request"></param>
+            <param name="id"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="P:AspNetCoreDemo.Startup.ServiceXmlPath">
             <summary>
                 The path for service metadata.
             </summary>
+        </member>
+        <member name="T:AspNetCoreDemo.Upds">
+            <summary>
+                The description of behavior and interface manifest.
+            </summary>
+        </member>
+        <member name="P:AspNetCoreDemo.Upds.ServiceXmlPath">
+            <summary>
+                The path for service metadata.
+            </summary>
+        </member>
+        <member name="P:AspNetCoreDemo.Upds.ServiceDtoXmlPath">
+            <summary>
+                The path for dto metadata.
+            </summary>
+        </member>
+        <member name="P:AspNetCoreDemo.Upds.ConfigPath">
+            <summary>
+                The path of configuration under application root folder
+            </summary>
+        </member>
+        <member name="P:AspNetCoreDemo.Upds.SwaggerJsonPath">
+            <summary>
+                The path for application metadata provide by swagger framework.
+            </summary>
+        </member>
+        <member name="M:AspNetCoreDemo.Upds.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+                This method gets called by the runtime.
+                Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="loggerFactory"></param>
+        </member>
+        <member name="M:AspNetCoreDemo.Upds.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This method gets called by the runtime.
+                Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:AspNetCoreDemo.Upds.RegisterRedisEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                Register redis cache instance.
+            </summary>
+            <param name="services"></param>
         </member>
     </members>
 </doc>

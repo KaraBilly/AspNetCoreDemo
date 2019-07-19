@@ -6,12 +6,12 @@ using System.Text;
 
 namespace AspNetCoreDemo.Dtos.Values.Requests
 {
-    public class GetValuesRequest : RequestBase
+    public class GetValuesRequest //: RequestBase
     {
         /// <summary>
         ///  value  Id
         /// </summary>
-        [FromRoute(Name = "value_id")]
+        [FromQuery(Name = "val_id")]
         public long ValueId { get; set; }
         /// <summary>
         ///   Value
