@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
 using AspectCore.Extensions.DependencyInjection;
 using AspNetCoreDemo.Configs;
+using AspNetCoreDemo.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +21,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -52,7 +55,6 @@ namespace AspNetCoreDemo
         public Startup(IHostingEnvironment env)
         {
             CurrentEnvironment = env;
-            //ApplicationConfig = new ApplicationConfig(env);
         }
 
         private void ConfigureSwagger(IServiceCollection services)
@@ -103,7 +105,10 @@ namespace AspNetCoreDemo
         }
         private static void AddServicesFeatures(IServiceCollection services)
         {
-            services.AddMvc()
+            services.AddMvc(opt =>
+                {
+                    opt.Filters.Add<GlobalExceptionFilterAttribute>(); 
+                })
                 .AddJsonOptions(opt =>
                 {
                     opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
@@ -141,6 +146,11 @@ namespace AspNetCoreDemo
                         });
                 }
             );
+
+            //var nLogFile = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
+            //    "Configs",
+            //    "NLog.config");
+            //env.ConfigureNLog(nLogFile);
             app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
             app.UseSwagger();
