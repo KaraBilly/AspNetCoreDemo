@@ -17,7 +17,9 @@ namespace AspNetCoreDemo.Framework.Infrastructures.Cache
         public string CacheTest
         {
             get => _cache.Get<string>(CacheTestKey);
-            set => _cache.Set(CacheTestKey, value);
+            set => _cache.Set(CacheTestKey, value,
+                new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(10))
+                    .SetSlidingExpiration(TimeSpan.FromMinutes(5)));
         }
     }
 }
