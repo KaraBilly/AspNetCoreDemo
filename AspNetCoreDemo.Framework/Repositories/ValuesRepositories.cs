@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AspNetCoreDemo.Framework.Infrastructures.Cache;
+using AspNetCoreDemo.Framework.Repositories.Entities;
 using AspNetCoreDemo.Framework.Repositories.Interfaces;
 
 namespace AspNetCoreDemo.Framework.Repositories
@@ -23,6 +24,15 @@ namespace AspNetCoreDemo.Framework.Repositories
             }
 
             return cache;
+        }
+
+        public Detail GetDetail()
+        {
+            return new Detail
+            {
+                DetailIntTest = 1,
+                DetailStrTest = "2"
+            };
         }
     }
 }

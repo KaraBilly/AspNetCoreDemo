@@ -9,6 +9,7 @@ using AspNetCoreDemo.Dtos.Values.Requests;
 using AspNetCoreDemo.Dtos.Values.Responses;
 using AspNetCoreDemo.Framework.Errors;
 using AspNetCoreDemo.Framework.Repositories.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 
@@ -20,10 +21,12 @@ namespace AspNetCoreDemo.Controllers
     {
         private readonly ILogger _log;
         private readonly IValuesRepositories _valuesRepositories;
-        public ValuesController(IValuesRepositories valuesRepositories)
+        private readonly IMapper _mapper;
+        public ValuesController(IValuesRepositories valuesRepositories,IMapper mapper)
         {
             _log = LogManager.GetCurrentClassLogger();
             _valuesRepositories = valuesRepositories;
+            _mapper = mapper;
         }
         // GET api/values
         /// <summary>
@@ -50,7 +53,8 @@ namespace AspNetCoreDemo.Controllers
 
                 return new GetValuesResponse
                 {
-                    Details = new DetailDto {DetailInt = 1, DetailStr = "dsf"},
+                    Details = _mapper.Map<DetailDto>(_valuesRepositories.GetDetail()),
+                        //new DetailDto {DetailInt = 1, DetailStr = "dsf"},
                     Result = _valuesRepositories.GetValues(id)
                 };
             });

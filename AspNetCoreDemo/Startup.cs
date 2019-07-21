@@ -11,6 +11,8 @@ using AspNetCoreDemo.Filters;
 using AspNetCoreDemo.Framework.Infrastructures.Cache;
 using AspNetCoreDemo.Framework.Repositories;
 using AspNetCoreDemo.Framework.Repositories.Interfaces;
+using AspNetCoreDemo.Mapping;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -127,12 +129,17 @@ namespace AspNetCoreDemo
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<ValuesProfile>();
+            });
+            services.AddSingleton(config);
+            services.AddScoped<IMapper, Mapper>();
             services.AddMemoryCache();
             services.AddOptions();
         }
         private static void RegisterCacheManager(IServiceCollection services)
         {
-            services.AddMemoryCache();
             var provider = services.BuildServiceProvider();
             AppMemoryCache = provider.GetService<IMemoryCache>();
             AppCacheObjectManager = new MemoryCacheObjectManager(
