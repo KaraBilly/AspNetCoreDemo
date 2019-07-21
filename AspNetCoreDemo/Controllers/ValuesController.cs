@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using AspNetCoreDemo.Dtos;
 using AspNetCoreDemo.Dtos.Values.ChildDtos;
 using AspNetCoreDemo.Dtos.Values.Requests;
 using AspNetCoreDemo.Dtos.Values.Responses;
+using AspNetCoreDemo.Framework.Errors;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 
@@ -21,28 +23,33 @@ namespace AspNetCoreDemo.Controllers
             _log = LogManager.GetCurrentClassLogger();
         }
         // GET api/values
-        //[ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         /// <summary>
         /// get
         /// </summary>
         /// <param name="id"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(NotFoundResult), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(GetValuesResponse), (int)HttpStatusCode.OK)]
         [HttpGet("~/test/{id}")]
-        public async Task<ObjectResult> GetAsync([FromRoute(Name = "id")]int id,[FromQuery]GetValuesRequest value)
+        public Task<ObjectResult> GetAsync([FromRoute(Name = "id")]int id,[FromQuery]GetValuesRequest value)
         {
-            //_log.Info("Info");
-            //_log.Debug("Debug");
-            //_log.Error("Error");
-            //_log.Warn("Warn");
-            //throw new Exception("test Exception");
-            return new OkObjectResult(new GetValuesResponse
+            return DoAsync(async () =>
             {
-                Details = new DetailDto { DetailInt = 1,DetailStr = "dsf"},
-                Result = "ds"
+                //_log.Info("Info");
+                //_log.Debug("Debug");
+                //_log.Error("Error");
+                //_log.Warn("Warn");
+                throw new ServiceException(AllServiceErrors.TestError.WithMessageParameters("Billy"));
+                throw new Exception("test Exception");
+                return new OkObjectResult(new GetValuesResponse
+                {
+                    Details = new DetailDto {DetailInt = 1, DetailStr = "dsf"},
+                    Result = "ds"
+                });
             });
+
             //return new string[] { "value1", "value2" };
         }
 

@@ -26,7 +26,7 @@ namespace AspNetCoreDemo.Filters
         public override void OnException(ExceptionContext context)
         {
             var request = context.HttpContext.Request;
-            var exception = context.Exception;
+           // var exception = context.Exception;
 
             var customFields = new Dictionary<string, string>
             {
@@ -65,17 +65,17 @@ namespace AspNetCoreDemo.Filters
             ReadException(context.Exception);
             _logger.LogError(error);
 
-            var result = new ContentResult
-            {
-                StatusCode = (int)HttpStatusCode.InternalServerError,
-                ContentType = TextContentType
-            };
+            //var result = new ContentResult
+            //{
+            //    StatusCode = (int)HttpStatusCode.InternalServerError,
+            //    ContentType = TextContentType
+            //};
 
-            var json = new { exception.Message, Detail = error};
-            result.Content = JsonConvert.SerializeObject(json);
+            //var json = new { exception.Message, Detail = error};
+            //result.Content = JsonConvert.SerializeObject(json);
            
-            context.Result = result;
-            context.ExceptionHandled = true;
+            //context.Result = result;
+            //context.ExceptionHandled = true;
         }
     }
 }

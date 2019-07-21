@@ -4,23 +4,6 @@
         <name>AspNetCoreDemo.Dtos</name>
     </assembly>
     <members>
-        <member name="P:AspNetCoreDemo.Dtos.RequestBase.Subsidiary">
-            <summary>
-                The subsidiary code, the default value is CN (header).
-            </summary>
-        </member>
-        <member name="P:AspNetCoreDemo.Dtos.RequestBase.Platform">
-            <summary>
-                Currently only support mina, mdm_h5 (header).
-            </summary>
-        </member>
-        <member name="P:AspNetCoreDemo.Dtos.RequestBase.RequestId">
-            <summary>
-                Request identity, to track request sent from client.
-                Will generate request id(GUID).
-                If consumer doesn't provide or provides unexpected id(No GUID type) (header).
-            </summary>
-        </member>
         <member name="P:AspNetCoreDemo.Dtos.Values.Requests.GetValuesRequest.ValueId">
             <summary>
              value  Id

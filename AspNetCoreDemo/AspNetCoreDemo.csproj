@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AspNetCoreDemo.Dtos\AspNetCoreDemo.Dtos.csproj" />
+    <ProjectReference Include="..\AspNetCoreDemo.Framework\AspNetCoreDemo.Framework.csproj" />
   </ItemGroup>
 
   <ItemGroup>

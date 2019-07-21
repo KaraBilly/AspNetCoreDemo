@@ -11,7 +11,7 @@ namespace AspNetCoreDemo.Dtos.Values.Requests
         /// <summary>
         ///  value  Id
         /// </summary>
-        [FromQuery(Name = "val_id")]
+        [FromQuery(Name = "val_id"),Required]
         public long ValueId { get; set; }
         /// <summary>
         ///   Value
