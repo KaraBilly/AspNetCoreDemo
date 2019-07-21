@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 using AspectCore.Extensions.DependencyInjection;
 using AspNetCoreDemo.Configs;
 using AspNetCoreDemo.Filters;
+using AspNetCoreDemo.Framework.Infrastructures.Cache;
+using AspNetCoreDemo.Framework.Repositories;
+using AspNetCoreDemo.Framework.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -51,6 +55,9 @@ namespace AspNetCoreDemo
             $"{ApplicationConfig.ApplicationName}.Dtos.xml");
         //private ApplicationConfig ApplicationConfig { get; }
         private IHostingEnvironment CurrentEnvironment { get; }
+        private static IMemoryCache AppMemoryCache { get; set; }
+        private static IMemoryCacheObjectManager AppCacheObjectManager { get; set; }
+        private static IValuesRepositories CurrentValuesRepositories { get; set; }
         #endregion
         public Startup(IHostingEnvironment env)
         {
@@ -84,6 +91,8 @@ namespace AspNetCoreDemo
         {
             RegisterConfiguration(services);
             AddServicesFeatures(services);
+            RegisterCacheManager(services);
+            RegisterRepositories(services);
             ConfigureSwagger(services);
             return BuildAspectCore(services);
         }
@@ -120,6 +129,21 @@ namespace AspNetCoreDemo
 
             services.AddMemoryCache();
             services.AddOptions();
+        }
+        private static void RegisterCacheManager(IServiceCollection services)
+        {
+            services.AddMemoryCache();
+            var provider = services.BuildServiceProvider();
+            AppMemoryCache = provider.GetService<IMemoryCache>();
+            AppCacheObjectManager = new MemoryCacheObjectManager(
+                AppMemoryCache ?? throw new NullReferenceException());
+            services.AddSingleton(AppCacheObjectManager);
+        }
+
+        private void RegisterRepositories(IServiceCollection services)
+        {
+            CurrentValuesRepositories = new ValueRepositories(AppCacheObjectManager);
+            services.AddSingleton<IValuesRepositories>(CurrentValuesRepositories);
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

@@ -5,7 +5,7 @@ using AspNetCoreDemo.Dtos.Values.ChildDtos;
 
 namespace AspNetCoreDemo.Dtos.Values.Responses
 {
-    public class GetValuesResponse
+    public class GetValuesResponse : ResponseBase
     {
         public string Result { get; set; }
         public List<string> LstResult { get; set; }

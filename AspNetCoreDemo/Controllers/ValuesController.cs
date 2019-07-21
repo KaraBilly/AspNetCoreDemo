@@ -8,6 +8,7 @@ using AspNetCoreDemo.Dtos.Values.ChildDtos;
 using AspNetCoreDemo.Dtos.Values.Requests;
 using AspNetCoreDemo.Dtos.Values.Responses;
 using AspNetCoreDemo.Framework.Errors;
+using AspNetCoreDemo.Framework.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 
@@ -18,9 +19,11 @@ namespace AspNetCoreDemo.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly ILogger _log;
-        public ValuesController()
+        private readonly IValuesRepositories _valuesRepositories;
+        public ValuesController(IValuesRepositories valuesRepositories)
         {
             _log = LogManager.GetCurrentClassLogger();
+            _valuesRepositories = valuesRepositories;
         }
         // GET api/values
         /// <summary>
@@ -41,13 +44,15 @@ namespace AspNetCoreDemo.Controllers
                 //_log.Debug("Debug");
                 //_log.Error("Error");
                 //_log.Warn("Warn");
-                throw new ServiceException(AllServiceErrors.TestError.WithMessageParameters("Billy"));
-                throw new Exception("test Exception");
-                return new OkObjectResult(new GetValuesResponse
+
+                //throw new ServiceException(AllServiceErrors.TestError.WithMessageParameters("Billy"));
+                //throw new Exception("test Exception");
+
+                return new GetValuesResponse
                 {
                     Details = new DetailDto {DetailInt = 1, DetailStr = "dsf"},
-                    Result = "ds"
-                });
+                    Result = _valuesRepositories.GetValues(id)
+                };
             });
 
             //return new string[] { "value1", "value2" };
