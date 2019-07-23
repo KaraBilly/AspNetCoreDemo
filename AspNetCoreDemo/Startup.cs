@@ -98,6 +98,17 @@ namespace AspNetCoreDemo
             ConfigureSwagger(services);
             return BuildAspectCore(services);
         }
+
+        private void RegisterHttpClientFactory(IServiceCollection services)
+        {
+            services.AddHttpClient();
+            services.AddHttpClient("github", c =>
+            {
+                c.BaseAddress = new Uri("https://api.github.com/");
+                c.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+                c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+            });
+        }
         private static IServiceProvider BuildAspectCore(IServiceCollection services)
         {
             services.ConfigureDynamicProxy();

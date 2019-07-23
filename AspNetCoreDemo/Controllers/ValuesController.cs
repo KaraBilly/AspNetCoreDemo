@@ -30,7 +30,7 @@ namespace AspNetCoreDemo.Controllers
         }
 
         /// <summary>
-        ///   get
+        ///   get test 
         /// </summary>
         /// <param name="id"></param>
         /// <param name="value"></param>
@@ -71,7 +71,7 @@ namespace AspNetCoreDemo.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] string value,[FromQuery]int request)
         {
         }
 
