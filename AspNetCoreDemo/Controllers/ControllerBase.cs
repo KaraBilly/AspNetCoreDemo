@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using AspNetCoreDemo.Dtos;
 using AspNetCoreDemo.Framework.Errors;
+using AspNetCoreDemo.Request;
 
 namespace AspNetCoreDemo.Controllers
 {
@@ -40,19 +41,11 @@ namespace AspNetCoreDemo.Controllers
                 switch (ex.Error?.StatusCode)
                 {
                     case HttpStatusCode.BadRequest:
-                        return BadRequest(new ErrorResponse
-                        {
-                            ErrorCode = ex.Error.Code,
-                            ErrorMessage = ex.Error.Message,
-                            ErrorData = ex.Error.Data
-                        });
+                        return GetBadRequest(ex);
+                    case HttpStatusCode.ExpectationFailed:
+                        return GetExpFailedRequest(ex);
                     case HttpStatusCode.NotFound:
-                        return NotFound(new ErrorResponse
-                        {
-                            ErrorCode = ex.Error.Code,
-                            ErrorMessage = ex.Error.Message,
-                            ErrorData = ex.Error.Data
-                        });
+                        return GetNotFound(ex);
                     default:
                         throw;
                 }
@@ -75,6 +68,8 @@ namespace AspNetCoreDemo.Controllers
                 {
                     case HttpStatusCode.BadRequest:
                         return GetBadRequest(ex);
+                    case HttpStatusCode.ExpectationFailed:
+                        return GetExpFailedRequest(ex);
                     case HttpStatusCode.NotFound:
                         return GetNotFound(ex);
                     default:
@@ -119,6 +114,19 @@ namespace AspNetCoreDemo.Controllers
             });
         }
 
+        private ExpectationFailedObjectResult GetExpFailedRequest(ServiceException ex)
+        {
+            return ExpectationFailedRequest(new ErrorResponse
+            {
+                ErrorCode = ex.Error.Code,
+                ErrorMessage = ex.Error.Message,
+                ErrorData = ex.Error.Data
+            });
+        }
+        protected virtual ExpectationFailedObjectResult ExpectationFailedRequest(object error)
+        {
+            return new ExpectationFailedObjectResult(error);
+        }
 
     }
 }

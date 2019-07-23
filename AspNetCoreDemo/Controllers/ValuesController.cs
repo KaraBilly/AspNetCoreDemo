@@ -28,9 +28,9 @@ namespace AspNetCoreDemo.Controllers
             _valuesRepositories = valuesRepositories;
             _mapper = mapper;
         }
-        // GET api/values
+
         /// <summary>
-        /// get
+        ///   get
         /// </summary>
         /// <param name="id"></param>
         /// <param name="value"></param>
