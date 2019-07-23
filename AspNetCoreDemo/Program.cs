@@ -20,7 +20,6 @@ namespace AspNetCoreDemo
                 "NLog.config")).GetCurrentClassLogger();
             try
             {
-                logger.Debug("init main");
                 CreateWebHostBuilder(args).Build().Run();
             }
             catch (Exception ex)

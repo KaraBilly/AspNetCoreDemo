@@ -43,13 +43,13 @@ namespace AspNetCoreDemo.Controllers
         {
             return DoAsync(async () =>
             {
-                //_log.Info("Info");
-                //_log.Debug("Debug");
-                //_log.Error("Error");
-                //_log.Warn("Warn");
-
+                _log.Info("info");
+                _log.Debug("Debug");
+                _log.Error("Error");
+                _log.Warn("Warn");
+                
                 //throw new ServiceException(AllServiceErrors.TestError.WithMessageParameters("Billy"));
-                //throw new Exception("test Exception");
+                throw new Exception("test Exception");
 
                 return new GetValuesResponse
                 {
