@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreDemo.Objects;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,5 +37,6 @@ namespace AspNetCoreDemo.Configs
         
         public static string ApplicationName => Config[nameof(ApplicationName)];
         public static string SubVersion => Config[nameof(SubVersion)];
+        public static Connections MySqlConnectionStrings => GetAppSettings<Connections>(nameof(MySqlConnectionStrings));
     }
 }

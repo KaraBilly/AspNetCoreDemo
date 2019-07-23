@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreDemo.Request
+namespace AspNetCoreDemo.Objects
 {
     public class ExpectationFailedObjectResult : ObjectResult
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -27,6 +28,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using NLog;
 using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -158,6 +160,14 @@ namespace AspNetCoreDemo
             services.AddSingleton(AppCacheObjectManager);
         }
 
+        private static void RegisterDistributedCache(IServiceCollection services)
+        {
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = "127.0.0.1:6379";
+            });
+        }
+
         private void RegisterRepositories(IServiceCollection services)
         {
             CurrentValuesRepositories = new ValueRepositories(AppCacheObjectManager);
@@ -189,10 +199,13 @@ namespace AspNetCoreDemo
                 }
             );
 
-            //var nLogFile = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
-            //    "Configs",
-            //    "NLog.config");
-            //env.ConfigureNLog(nLogFile);
+            var nLogFile = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath,
+                "Configs",
+                "NLog.config");
+            env.ConfigureNLog(nLogFile);
+            LogManager.Configuration.Variables["ConnectionStrings"] =
+                ApplicationConfig.MySqlConnectionStrings.DefaultConnection;
+
             app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
             app.UseSwagger();

@@ -8,7 +8,10 @@ namespace AspNetCoreDemo.Framework.Infrastructures.Cache
     public class MemoryCacheObjectManager : IMemoryCacheObjectManager
     {
         private readonly IMemoryCache _cache;
+
+        #region CacheKey
         private const string CacheTestKey = nameof(CacheTestKey);
+        #endregion
         public MemoryCacheObjectManager(IMemoryCache cache)
         {
             _cache = cache ?? throw new ArgumentNullException();

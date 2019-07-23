@@ -64,18 +64,6 @@ namespace AspNetCoreDemo.Filters
 
             ReadException(context.Exception);
             _logger.LogError(error);
-
-            //var result = new ContentResult
-            //{
-            //    StatusCode = (int)HttpStatusCode.InternalServerError,
-            //    ContentType = TextContentType
-            //};
-
-            //var json = new { exception.Message, Detail = error};
-            //result.Content = JsonConvert.SerializeObject(json);
-           
-            //context.Result = result;
-            //context.ExceptionHandled = true;
         }
     }
 }

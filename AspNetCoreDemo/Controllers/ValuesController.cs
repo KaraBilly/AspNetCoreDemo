@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using AspNetCoreDemo.Dtos;
 using AspNetCoreDemo.Dtos.Values.ChildDtos;
@@ -11,6 +12,7 @@ using AspNetCoreDemo.Framework.Errors;
 using AspNetCoreDemo.Framework.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using NLog;
 
 namespace AspNetCoreDemo.Controllers
@@ -21,11 +23,13 @@ namespace AspNetCoreDemo.Controllers
     {
         private readonly ILogger _log;
         private readonly IValuesRepositories _valuesRepositories;
+        private readonly IDistributedCache _distributedCache;
         private readonly IMapper _mapper;
-        public ValuesController(IValuesRepositories valuesRepositories,IMapper mapper)
+        public ValuesController(IValuesRepositories valuesRepositories, IDistributedCache distributedCache,IMapper mapper)
         {
             _log = LogManager.GetCurrentClassLogger();
             _valuesRepositories = valuesRepositories;
+            _distributedCache = distributedCache;
             _mapper = mapper;
         }
 
@@ -43,14 +47,17 @@ namespace AspNetCoreDemo.Controllers
         {
             return DoAsync(async () =>
             {
-                _log.Info("info");
-                _log.Debug("Debug");
-                _log.Error("Error");
-                _log.Warn("Warn");
+                //_log.Info("info");
+                //_log.Debug("Debug");
+                //_log.Error("Error");
+                //_log.Warn("Warn");
                 
-                //throw new ServiceException(AllServiceErrors.TestError.WithMessageParameters("Billy"));
-                throw new Exception("test Exception");
+                ////throw new ServiceException(AllServiceErrors.TestError.WithMessageParameters("Billy"));
+                //throw new Exception("test Exception");
 
+                await _distributedCache.SetAsync("hello", Encoding.UTF8.GetBytes("world22222"),
+                    new DistributedCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(5)));
+                var _ = await _distributedCache.GetAsync("hello");
                 return new GetValuesResponse
                 {
                     Details = _mapper.Map<DetailDto>(_valuesRepositories.GetDetail()),
