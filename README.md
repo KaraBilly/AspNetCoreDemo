@@ -6,7 +6,8 @@ You can use it for quickly simple project
 # MiddleWare Imported
 MemeryCache    
 Log   for Nlog default database MySQL     
-Swagger
+Swagger     
+AutoMapper
 
 # Todo
 EF Core  
