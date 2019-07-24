@@ -96,9 +96,21 @@ namespace AspNetCoreDemo
             RegisterConfiguration(services);
             AddServicesFeatures(services);
             RegisterCacheManager(services);
+            RegisterModules(services);
             RegisterRepositories(services);
+            RegisterBusinessProviders(services);
             ConfigureSwagger(services);
             return BuildAspectCore(services);
+        }
+
+        private void RegisterBusinessProviders(IServiceCollection services)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void RegisterModules(IServiceCollection services)
+        {
+            //throw new NotImplementedException();
         }
 
         private void RegisterHttpClientFactory(IServiceCollection services)
@@ -171,7 +183,7 @@ namespace AspNetCoreDemo
         private void RegisterRepositories(IServiceCollection services)
         {
             CurrentValuesRepositories = new ValueRepositories(AppCacheObjectManager);
-            services.AddSingleton<IValuesRepositories>(CurrentValuesRepositories);
+            services.AddSingleton(CurrentValuesRepositories);
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
