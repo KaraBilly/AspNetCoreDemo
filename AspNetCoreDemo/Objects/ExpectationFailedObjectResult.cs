@@ -11,7 +11,7 @@ namespace AspNetCoreDemo.Objects
         public ExpectationFailedObjectResult(object error)
             : base(error)
         {
-            this.StatusCode = new int?(400);
+            this.StatusCode = new int?(417);
         }
     }
 }

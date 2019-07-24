@@ -6,6 +6,6 @@ namespace AspNetCoreDemo.Dtos
 {
     public class ResponseBase
     {
-        public List<string> LinkedUrl { get; set; }
+        public List<string> PrevUrls { get; set; }
     }
 }

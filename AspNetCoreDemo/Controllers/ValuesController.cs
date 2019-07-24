@@ -10,6 +10,7 @@ using AspNetCoreDemo.Dtos.Values.Requests;
 using AspNetCoreDemo.Dtos.Values.Responses;
 using AspNetCoreDemo.Framework.Errors;
 using AspNetCoreDemo.Framework.Repositories.Interfaces;
+using AspNetCoreDemo.Objects;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
@@ -41,6 +42,7 @@ namespace AspNetCoreDemo.Controllers
         /// <returns></returns>
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(NotFoundResult), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.ExpectationFailed)]
         [ProducesResponseType(typeof(GetValuesResponse), (int)HttpStatusCode.OK)]
         [HttpGet("~/test/{id}")]
         public Task<ObjectResult> GetAsync([FromRoute(Name = "id")]int id,[FromQuery]GetValuesRequest value)
