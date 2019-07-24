@@ -1,7 +1,7 @@
 # AspNetCoreDemo
 AspNetCoreDemo
  
-You can use it for quickly simple project
+You can use it for quickly simple webapi project for production
 
 # MiddleWare Imported
 MemeryCache    
