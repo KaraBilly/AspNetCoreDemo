@@ -42,6 +42,7 @@ namespace AspNetCoreDemo
         private const string MetadataTitle = "AspNetCoreDemo";
         private const string Version = "v1";
         private const string DefaultContentType = "application/json";
+        //public const string ContactMail = ""
         #endregion
 
         #region Properties
@@ -89,6 +90,7 @@ namespace AspNetCoreDemo
                 options.IncludeXmlComments(ServiceDtoXmlPath);
             });
         }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -188,6 +190,7 @@ namespace AspNetCoreDemo
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             app.UseExceptionHandler(
                 options =>
                 {
