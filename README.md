@@ -1,7 +1,7 @@
 # AspNetCoreDemo
 AspNetCoreDemo
  
-Simple Demo for aspnet api based on dotnet core sdk 2.1 
+Simple Demo for aspnet api based on dotnet core sdk 2.1   
 You can use it for quickly simple webapi project for production
 
 # MiddleWare Imported
