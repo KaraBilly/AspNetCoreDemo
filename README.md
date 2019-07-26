@@ -12,7 +12,7 @@ AutoMapper
 EF Core 
 
 # Todo 
-Redis   [Not Excellentlly]
+Redis   [Not Excellentlly]  
 Swagger [More Beautiful]    
 Polly          
 Consul    
