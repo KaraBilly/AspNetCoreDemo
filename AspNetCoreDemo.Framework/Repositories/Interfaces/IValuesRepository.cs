@@ -5,7 +5,7 @@ using AspNetCoreDemo.Framework.Repositories.Entities;
 
 namespace AspNetCoreDemo.Framework.Repositories.Interfaces
 {
-    public interface IValuesRepositories
+    public interface IValuesRepository
     {
         string GetValues(int value);
         Detail GetDetail();

@@ -11,6 +11,7 @@ using AspNetCoreDemo.Configs;
 using AspNetCoreDemo.Filters;
 using AspNetCoreDemo.Framework.Infrastructures.Cache;
 using AspNetCoreDemo.Framework.Repositories;
+using AspNetCoreDemo.Framework.Repositories.Entities.GroupShopping;
 using AspNetCoreDemo.Framework.Repositories.Interfaces;
 using AspNetCoreDemo.Mapping;
 using AutoMapper;
@@ -20,6 +21,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +32,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NLog;
 using NLog.Web;
+using StackExchange.Redis;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -62,7 +65,8 @@ namespace AspNetCoreDemo
         private IHostingEnvironment CurrentEnvironment { get; }
         private static IMemoryCache AppMemoryCache { get; set; }
         private static IMemoryCacheObjectManager AppCacheObjectManager { get; set; }
-        private static IValuesRepositories CurrentValuesRepositories { get; set; }
+        private static IValuesRepository CurrentValuesRepository { get; set; }
+        private static IGroupShoppingRepository CurrentGroupShoppingRepository { get; set; }
         #endregion
         public Startup(IHostingEnvironment env)
         {
@@ -98,11 +102,42 @@ namespace AspNetCoreDemo
             RegisterConfiguration(services);
             AddServicesFeatures(services);
             RegisterCacheManager(services);
-            RegisterModules(services);
+            InitializeAutoMapper(services);
+            InitializeOrmConfiguration(services);
             RegisterRepositories(services);
+            RegisterModules(services);
             RegisterBusinessProviders(services);
             ConfigureSwagger(services);
             return BuildAspectCore(services);
+        }
+
+        private void InitializeAutoMapper(IServiceCollection services)
+        {
+            AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<ValuesProfile>();
+                cfg.AddProfile<GroupShoppingProfile>();
+            });
+            services.AddSingleton(config);
+            services.AddScoped<IMapper, Mapper>();
+        }
+
+        private void InitializeOrmConfiguration(IServiceCollection services)
+        {
+            services.AddDbContext<OrderContext>(opt =>
+                opt.UseMySQL(ApplicationConfig.MySqlConnectionStrings.DefaultConnection));
+        }
+        private void RegisterRepositories(IServiceCollection services)
+        {
+            CurrentValuesRepository = new ValueRepository(AppCacheObjectManager);
+            services.AddSingleton(CurrentValuesRepository);
+            services.AddScoped<IGroupShoppingRepository, GroupShoppingRepository>();
+            //CurrentGroupShoppingRepository = new GroupShoppingRepository(new OrderContext(ApplicationConfig.MySqlConnectionStrings.DefaultConnection));
+            //services.AddSingleton(CurrentGroupShoppingRepository);
+        }
+        private void RegisterModules(IServiceCollection services)
+        {
+            //throw new NotImplementedException();
         }
 
         private void RegisterBusinessProviders(IServiceCollection services)
@@ -110,10 +145,7 @@ namespace AspNetCoreDemo
             //throw new NotImplementedException();
         }
 
-        private void RegisterModules(IServiceCollection services)
-        {
-            //throw new NotImplementedException();
-        }
+        
 
         private void RegisterHttpClientFactory(IServiceCollection services)
         {
@@ -156,12 +188,6 @@ namespace AspNetCoreDemo
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<ValuesProfile>();
-            });
-            services.AddSingleton(config);
-            services.AddScoped<IMapper, Mapper>();
             services.AddMemoryCache();
             services.AddOptions();
         }
@@ -182,11 +208,7 @@ namespace AspNetCoreDemo
             });
         }
 
-        private void RegisterRepositories(IServiceCollection services)
-        {
-            CurrentValuesRepositories = new ValueRepositories(AppCacheObjectManager);
-            services.AddSingleton(CurrentValuesRepositories);
-        }
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
