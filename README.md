@@ -8,7 +8,7 @@ You can use it for quickly simple webapi project for production
 MemeryCache    
 Log   for Nlog default database MySQL     
 Swagger     
-AutoMapper
+AutoMapper  
 EF Core 
 
 # Todo 
