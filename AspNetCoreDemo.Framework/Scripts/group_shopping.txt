@@ -1,0 +1,22 @@
+﻿CREATE DATABASE `order`;
+GO
+
+USE `order`;
+GO
+
+DROP TABLE IF EXISTS `group_shopping_found`;
+CREATE TABLE `group_shopping_found` (
+	`group_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`head_id` int(10) UNSIGNED NOT NULL,
+	`sku` int(10) UNSIGNED NOT NULL,
+	`actual_price` DECIMAL(20,3) NOT NULL,
+	`head_status` TINYINT NOT NULL,
+	`group_status` TINYINT NOT NULL,
+	`dt_begin` DATETIME DEFAULT NULL,
+	`dt_end` DATETIME DEFAULT NULL,
+	`dt_inserted` DATETIME NOT NULL DEFAULT NOW(),
+	`inserted_by` VARCHAR(50) NOT NULL DEFAULT 'Online',
+	`dt_last_updated` DATETIME NOT NULL DEFAULT NOW(),
+	`last_updated_by` VARCHAR(50) NOT NULL DEFAULT 'Online',
+	PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;

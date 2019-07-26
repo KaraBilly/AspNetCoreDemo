@@ -7,10 +7,10 @@ using AspNetCoreDemo.Framework.Repositories.Interfaces;
 
 namespace AspNetCoreDemo.Framework.Repositories
 {
-    public class ValueRepositories : IValuesRepositories
+    public class ValueRepository : IValuesRepository
     {
         private readonly IMemoryCacheObjectManager _memoryCacheObjectManager;
-        public ValueRepositories(IMemoryCacheObjectManager memoryCacheObjectManager)
+        public ValueRepository(IMemoryCacheObjectManager memoryCacheObjectManager)
         {
             _memoryCacheObjectManager = memoryCacheObjectManager ?? throw new ArgumentNullException();
         }

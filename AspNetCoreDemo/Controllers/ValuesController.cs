@@ -23,13 +23,13 @@ namespace AspNetCoreDemo.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly ILogger _log;
-        private readonly IValuesRepositories _valuesRepositories;
+        private readonly IValuesRepository _valuesRepository;
         private readonly IDistributedCache _distributedCache;
         private readonly IMapper _mapper;
-        public ValuesController(IValuesRepositories valuesRepositories, IDistributedCache distributedCache,IMapper mapper)
+        public ValuesController(IValuesRepository valuesRepository, IDistributedCache distributedCache,IMapper mapper)
         {
             _log = LogManager.GetCurrentClassLogger();
-            _valuesRepositories = valuesRepositories;
+            _valuesRepository = valuesRepository;
             _distributedCache = distributedCache;
             _mapper = mapper;
         }
@@ -44,17 +44,17 @@ namespace AspNetCoreDemo.Controllers
         [ProducesResponseType(typeof(NotFoundResult), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(ErrorResponse), (int)HttpStatusCode.ExpectationFailed)]
         [ProducesResponseType(typeof(GetValuesResponse), (int)HttpStatusCode.OK)]
-        [HttpGet("~/test/{id}")]
+        [HttpGet("{id}")]
         public Task<ObjectResult> GetAsync([FromRoute(Name = "id")]int id,[FromQuery]GetValuesRequest value)
         {
             return DoAsync(async () =>
             {
-                //_log.Info("info");
-                //_log.Debug("Debug");
-                //_log.Error("Error");
-                //_log.Warn("Warn");
-                
-                ////throw new ServiceException(AllServiceErrors.TestError.WithMessageParameters("Billy"));
+                _log.Info("info");
+                _log.Debug("Debug");
+                _log.Error("Error");
+                _log.Warn("Warn");
+
+                throw new ServiceException(AllServiceErrors.TestError.WithMessageParameters("Billy"));
                 //throw new Exception("test Exception");
 
                 await _distributedCache.SetAsync("hello", Encoding.UTF8.GetBytes("world22222"),
@@ -62,9 +62,9 @@ namespace AspNetCoreDemo.Controllers
                 var _ = await _distributedCache.GetAsync("hello");
                 return new GetValuesResponse
                 {
-                    Details = _mapper.Map<DetailDto>(_valuesRepositories.GetDetail()),
+                    Details = _mapper.Map<DetailDto>(_valuesRepository.GetDetail()),
                         //new DetailDto {DetailInt = 1, DetailStr = "dsf"},
-                    Result = _valuesRepositories.GetValues(id)
+                    Result = _valuesRepository.GetValues(id)
                 };
             });
 
