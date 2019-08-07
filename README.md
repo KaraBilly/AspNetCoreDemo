@@ -1,6 +1,6 @@
 # AspNetCoreDemo
-AspNetCoreDemo
- 
+AspNetCoreDemo   
+ [![Build Status](https://dev.azure.com/43121289/AspNetCoreDemo/_apis/build/status/KaraBilly.AspNetCoreDemo?branchName=master)](https://dev.azure.com/43121289/AspNetCoreDemo/_build/latest?definitionId=1&branchName=master)   
 Simple Demo for aspnet api based on dotnet core sdk 2.1   
 You can use it for quickly simple webapi project for production
 
