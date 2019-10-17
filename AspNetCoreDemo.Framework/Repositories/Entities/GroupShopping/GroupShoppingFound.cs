@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AspNetCoreDemo.Framework.Repositories.Entities.GroupShopping
+namespace ND.ManagementSvcs.Framework.Repositories.Entities.GroupShopping
 {
     public partial class GroupShoppingFound
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AspNetCoreDemo.Framework.Repositories.Entities;
+using ND.ManagementSvcs.Framework.Repositories.Entities;
 
-namespace AspNetCoreDemo.Framework.Repositories.Interfaces
+namespace ND.ManagementSvcs.Framework.Repositories.Interfaces
 {
     public interface IValuesRepository
     {

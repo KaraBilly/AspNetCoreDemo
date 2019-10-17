@@ -7,13 +7,13 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using AspectCore.Extensions.DependencyInjection;
-using AspNetCoreDemo.Configs;
-using AspNetCoreDemo.Filters;
-using AspNetCoreDemo.Framework.Infrastructures.Cache;
-using AspNetCoreDemo.Framework.Repositories;
-using AspNetCoreDemo.Framework.Repositories.Entities.GroupShopping;
-using AspNetCoreDemo.Framework.Repositories.Interfaces;
-using AspNetCoreDemo.Mapping;
+using ND.ManagementSvcs.Configs;
+using ND.ManagementSvcs.Filters;
+using ND.ManagementSvcs.Framework.Infrastructures.Cache;
+using ND.ManagementSvcs.Framework.Repositories;
+using ND.ManagementSvcs.Framework.Repositories.Entities.GroupShopping;
+using ND.ManagementSvcs.Framework.Repositories.Interfaces;
+using ND.ManagementSvcs.Mapping;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -36,13 +36,13 @@ using StackExchange.Redis;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace AspNetCoreDemo
+namespace ND.ManagementSvcs
 {
     public class Startup
     {
         #region Fileds
         private const string SwaggerJsonPath = "/swagger/v1/swagger.json";
-        private const string MetadataTitle = "AspNetCoreDemo";
+        private const string MetadataTitle = "ND.ManagementSvcs";
         private const string Version = "v1";
         private const string DefaultContentType = "application/json";
         //public const string ContactMail = ""

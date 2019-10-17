@@ -37,8 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspNetCoreDemo.Dtos\AspNetCoreDemo.Dtos.csproj" />
-    <ProjectReference Include="..\AspNetCoreDemo.Framework\AspNetCoreDemo.Framework.csproj" />
+    <ProjectReference Include="..\AspNetCoreDemo.Dtos\ND.ManagementSvcs.Dtos.csproj" />
+    <ProjectReference Include="..\AspNetCoreDemo.Framework\ND.ManagementSvcs.Framework.csproj" />
   </ItemGroup>
 
   <ItemGroup>

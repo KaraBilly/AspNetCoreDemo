@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetCoreDemo.Objects;
+using ND.ManagementSvcs.Objects;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.PlatformAbstractions;
 
-namespace AspNetCoreDemo.Configs
+namespace ND.ManagementSvcs.Configs
 {
     public static class ApplicationConfig
     {

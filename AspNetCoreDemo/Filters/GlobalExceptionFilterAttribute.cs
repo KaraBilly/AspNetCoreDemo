@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Remotion.Linq.Clauses.ResultOperators;
 
-namespace AspNetCoreDemo.Filters
+namespace ND.ManagementSvcs.Filters
 {
     public class GlobalExceptionFilterAttribute : ExceptionFilterAttribute
     {

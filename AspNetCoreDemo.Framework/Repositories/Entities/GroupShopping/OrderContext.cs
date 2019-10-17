@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace AspNetCoreDemo.Framework.Repositories.Entities.GroupShopping
+namespace ND.ManagementSvcs.Framework.Repositories.Entities.GroupShopping
 {
     public partial class OrderContext : DbContext
     {

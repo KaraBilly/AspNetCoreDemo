@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AspNetCoreDemo": {
+    "ND.ManagementSvcs": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger/index.html",

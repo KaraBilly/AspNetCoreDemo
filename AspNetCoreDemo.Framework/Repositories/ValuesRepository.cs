@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AspNetCoreDemo.Framework.Infrastructures.Cache;
-using AspNetCoreDemo.Framework.Repositories.Entities;
-using AspNetCoreDemo.Framework.Repositories.Interfaces;
+using ND.ManagementSvcs.Framework.Infrastructures.Cache;
+using ND.ManagementSvcs.Framework.Repositories.Entities;
+using ND.ManagementSvcs.Framework.Repositories.Interfaces;
 
-namespace AspNetCoreDemo.Framework.Repositories
+namespace ND.ManagementSvcs.Framework.Repositories
 {
     public class ValueRepository : IValuesRepository
     {

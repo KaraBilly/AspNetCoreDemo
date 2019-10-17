@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using AspNetCoreDemo.Framework.Repositories.Entities.GroupShopping;
+using ND.ManagementSvcs.Framework.Repositories.Entities.GroupShopping;
 
-namespace AspNetCoreDemo.Framework.Repositories.Interfaces
+namespace ND.ManagementSvcs.Framework.Repositories.Interfaces
 {
     public interface IGroupShoppingRepository
     {

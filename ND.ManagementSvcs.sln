@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28729.10
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreDemo", "AspNetCoreDemo\AspNetCoreDemo.csproj", "{52EC0190-5F56-40E9-9E09-D8B2731F0E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ND.ManagementSvcs", "AspNetCoreDemo\ND.ManagementSvcs.csproj", "{52EC0190-5F56-40E9-9E09-D8B2731F0E3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreDemo.Dtos", "AspNetCoreDemo.Dtos\AspNetCoreDemo.Dtos.csproj", "{8E11D90D-25E5-4D41-8CD5-C95C3314FC86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ND.ManagementSvcs.Dtos", "AspNetCoreDemo.Dtos\ND.ManagementSvcs.Dtos.csproj", "{8E11D90D-25E5-4D41-8CD5-C95C3314FC86}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreDemo.Framework", "AspNetCoreDemo.Framework\AspNetCoreDemo.Framework.csproj", "{2E314CEE-83D4-4A2E-B6C3-7E7CBDF2EBCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ND.ManagementSvcs.Framework", "AspNetCoreDemo.Framework\ND.ManagementSvcs.Framework.csproj", "{2E314CEE-83D4-4A2E-B6C3-7E7CBDF2EBCC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D12E798B-30C3-4BA6-A3F9-AD325EDD978F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreDemo.Tests", "AspNetCoreDemo.Tests\AspNetCoreDemo.Tests.csproj", "{0F37FD9A-EE6D-4333-9A03-DDFD7CD36D91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ND.ManagementSvcs.Tests", "AspNetCoreDemo.Tests\ND.ManagementSvcs.Tests.csproj", "{0F37FD9A-EE6D-4333-9A03-DDFD7CD36D91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

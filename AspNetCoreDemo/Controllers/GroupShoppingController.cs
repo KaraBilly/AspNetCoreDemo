@@ -4,18 +4,18 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using AspNetCoreDemo.Dtos;
-using AspNetCoreDemo.Dtos.GroupShopping.Responses;
-using AspNetCoreDemo.Dtos.Values.ChildDtos;
-using AspNetCoreDemo.Dtos.Values.Requests;
-using AspNetCoreDemo.Dtos.Values.Responses;
-using AspNetCoreDemo.Framework.Errors;
-using AspNetCoreDemo.Framework.Repositories.Interfaces;
+using ND.ManagementSvcs.Dtos;
+using ND.ManagementSvcs.Dtos.GroupShopping.Responses;
+using ND.ManagementSvcs.Dtos.Values.ChildDtos;
+using ND.ManagementSvcs.Dtos.Values.Requests;
+using ND.ManagementSvcs.Dtos.Values.Responses;
+using ND.ManagementSvcs.Framework.Errors;
+using ND.ManagementSvcs.Framework.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace AspNetCoreDemo.Controllers
+namespace ND.ManagementSvcs.Controllers
 {
     //[Route("group-shopping")]
     [ApiController]

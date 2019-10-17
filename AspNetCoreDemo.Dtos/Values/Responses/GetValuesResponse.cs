@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AspNetCoreDemo.Dtos.Values.ChildDtos;
+using ND.ManagementSvcs.Dtos.Values.ChildDtos;
 
-namespace AspNetCoreDemo.Dtos.Values.Responses
+namespace ND.ManagementSvcs.Dtos.Values.Responses
 {
     public class GetValuesResponse : ResponseBase
     {

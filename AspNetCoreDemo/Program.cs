@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using NLog.Web;
 
-namespace AspNetCoreDemo
+namespace ND.ManagementSvcs
 {
     public class Program
     {

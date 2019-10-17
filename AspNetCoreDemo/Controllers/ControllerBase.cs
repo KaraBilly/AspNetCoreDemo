@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using AspNetCoreDemo.Dtos;
-using AspNetCoreDemo.Framework.Errors;
-using AspNetCoreDemo.Objects;
+using ND.ManagementSvcs.Dtos;
+using ND.ManagementSvcs.Framework.Errors;
+using ND.ManagementSvcs.Objects;
 
-namespace AspNetCoreDemo.Controllers
+namespace ND.ManagementSvcs.Controllers
 {
     [Controller]
     public abstract class ControllerBase : Controller

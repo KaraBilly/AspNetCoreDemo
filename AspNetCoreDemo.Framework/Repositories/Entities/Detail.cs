@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspNetCoreDemo.Framework.Repositories.Entities
+namespace ND.ManagementSvcs.Framework.Repositories.Entities
 {
     public class Detail
     {

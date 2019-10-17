@@ -8,16 +8,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
 WORKDIR /src
-COPY ["AspNetCoreDemo/AspNetCoreDemo.csproj", "AspNetCoreDemo/"]
-RUN dotnet restore "AspNetCoreDemo/AspNetCoreDemo.csproj"
+COPY ["ND.ManagementSvcs/ND.ManagementSvcs.csproj", "ND.ManagementSvcs/"]
+RUN dotnet restore "ND.ManagementSvcs/ND.ManagementSvcs.csproj"
 COPY . .
-WORKDIR "/src/AspNetCoreDemo"
-RUN dotnet build "AspNetCoreDemo.csproj" -c Release -o /app
+WORKDIR "/src/ND.ManagementSvcs"
+RUN dotnet build "ND.ManagementSvcs.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "AspNetCoreDemo.csproj" -c Release -o /app
+RUN dotnet publish "ND.ManagementSvcs.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "AspNetCoreDemo.dll"]
+ENTRYPOINT ["dotnet", "ND.ManagementSvcs.dll"]

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspNetCoreDemo.Dtos
+namespace ND.ManagementSvcs.Dtos
 {
     public class ResponseBase
     {

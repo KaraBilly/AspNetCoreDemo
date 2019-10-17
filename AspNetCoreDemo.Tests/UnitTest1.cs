@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace AspNetCoreDemo.Tests
+namespace ND.ManagementSvcs.Tests
 {
     public class UnitTest1
     {

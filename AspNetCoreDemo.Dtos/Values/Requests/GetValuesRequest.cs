@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace AspNetCoreDemo.Dtos.Values.Requests
+namespace ND.ManagementSvcs.Dtos.Values.Requests
 {
     public class GetValuesRequest //: RequestBase
     {

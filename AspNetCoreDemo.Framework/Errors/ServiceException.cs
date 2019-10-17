@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace AspNetCoreDemo.Framework.Errors
+namespace ND.ManagementSvcs.Framework.Errors
 {
     public class ServiceException : Exception
     {

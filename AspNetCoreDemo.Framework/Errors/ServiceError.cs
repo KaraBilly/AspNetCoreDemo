@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace AspNetCoreDemo.Framework.Errors
+namespace ND.ManagementSvcs.Framework.Errors
 {
     public class ServiceError
     {

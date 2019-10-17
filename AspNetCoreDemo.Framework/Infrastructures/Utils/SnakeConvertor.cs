@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspNetCoreDemo.Framework.Infrastructures.Utils
+namespace ND.ManagementSvcs.Framework.Infrastructures.Utils
 {
     internal static class SnakeConvertor
     {

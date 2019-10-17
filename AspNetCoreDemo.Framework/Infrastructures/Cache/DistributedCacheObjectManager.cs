@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace AspNetCoreDemo.Framework.Infrastructures.Cache
+namespace ND.ManagementSvcs.Framework.Infrastructures.Cache
 {
     public class DistributedCacheObjectManager
     {

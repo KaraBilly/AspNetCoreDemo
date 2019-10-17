@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AspNetCoreDemo.Framework.Repositories.Entities.GroupShopping;
-using AspNetCoreDemo.Framework.Repositories.Interfaces;
+using ND.ManagementSvcs.Framework.Repositories.Entities.GroupShopping;
+using ND.ManagementSvcs.Framework.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace AspNetCoreDemo.Framework.Repositories
+namespace ND.ManagementSvcs.Framework.Repositories
 {
     public class GroupShoppingRepository : IGroupShoppingRepository
     {

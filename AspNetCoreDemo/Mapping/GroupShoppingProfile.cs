@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetCoreDemo.Dtos.GroupShopping.Responses;
-using AspNetCoreDemo.Framework.Repositories.Entities.GroupShopping;
+using ND.ManagementSvcs.Dtos.GroupShopping.Responses;
+using ND.ManagementSvcs.Framework.Repositories.Entities.GroupShopping;
 using AutoMapper;
 
-namespace AspNetCoreDemo.Mapping
+namespace ND.ManagementSvcs.Mapping
 {
     public class GroupShoppingProfile : Profile
     {

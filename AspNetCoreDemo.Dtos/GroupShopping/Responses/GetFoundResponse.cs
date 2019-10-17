@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspNetCoreDemo.Dtos.GroupShopping.Responses
+namespace ND.ManagementSvcs.Dtos.GroupShopping.Responses
 {
     public class GetFoundResponse : ResponseBase
     {

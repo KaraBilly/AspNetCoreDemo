@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspNetCoreDemo.Framework.Errors
+namespace ND.ManagementSvcs.Framework.Errors
 {
     public static class ErrorExtensions
     {

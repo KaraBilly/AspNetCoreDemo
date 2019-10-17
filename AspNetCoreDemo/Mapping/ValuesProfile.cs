@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetCoreDemo.Dtos.GroupShopping.Responses;
-using AspNetCoreDemo.Dtos.Values.ChildDtos;
-using AspNetCoreDemo.Framework.Repositories.Entities;
-using AspNetCoreDemo.Framework.Repositories.Entities.GroupShopping;
+using ND.ManagementSvcs.Dtos.GroupShopping.Responses;
+using ND.ManagementSvcs.Dtos.Values.ChildDtos;
+using ND.ManagementSvcs.Framework.Repositories.Entities;
+using ND.ManagementSvcs.Framework.Repositories.Entities.GroupShopping;
 using AutoMapper;
 
-namespace AspNetCoreDemo.Mapping
+namespace ND.ManagementSvcs.Mapping
 {
     public class ValuesProfile : Profile
     {

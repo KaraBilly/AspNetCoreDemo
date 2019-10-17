@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AspNetCoreDemo.Dtos.Values.ChildDtos
+namespace ND.ManagementSvcs.Dtos.Values.ChildDtos
 {
     public class DetailDto
     {
